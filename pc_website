@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raiding PCs</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0b0b0f;
+  color: #fff;
+}
+
+/* NAV */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: #111;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+header h1 {
+  color: #ff2a2a;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 25px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff2a2a;
+}
+
+/* HERO */
+.hero {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, #0b0b0f, #141424);
+}
+
+.hero h2 {
+  font-size: 48px;
+}
+
+.hero span {
+  color: #ff2a2a;
+}
+
+.hero p {
+  margin: 20px auto;
+  max-width: 600px;
+  color: #aaa;
+}
+
+.hero button {
+  padding: 15px 35px;
+  background: #ff2a2a;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 60px;
+}
+
+section h3 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* BUILDER */
+.builder {
+  max-width: 900px;
+  margin: auto;
+  background: #141424;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.builder label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: #ff2a2a;
+}
+
+.builder select {
+  width: 100%;
+  padding: 12px;
+  background: #0b0b0f;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.total {
+  margin-top: 30px;
+  font-size: 22px;
+  text-align: center;
+  color: #00ff88;
+}
+
+/* SHOP */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product {
+  background: #141424;
+  padding: 25px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+}
+
+.product h4 {
+  color: #ff2a2a;
+  margin-bottom: 10px;
+}
+
+/* SUPPORT */
+.support {
+  max-width: 700px;
+  margin: auto;
+  background: #141424;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.support input,
+.support textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #0b0b0f;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.support button {
+  margin-top: 20px;
+  padding: 14px;
+  width: 100%;
+  background: #ff2a2a;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #111;
+  color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>RAIDING PCs</h1>
+  <nav>
+    <a href="#builder">Builder</a>
+    <a href="#shop">Shop</a>
+    <a href="#support">Support</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Build Your <span>Dream PC</span></h2>
+    <p>Choose every component. Full control. Maximum performance.</p>
+    <button onclick="document.getElementById('builder').scrollIntoView()">Start Building</button>
+  </div>
+</section>
+
+<!-- PC BUILDER -->
+<section id="builder">
+  <h3>Custom PC Builder</h3>
+  <div class="builder">
+
+    <label>CPU</label>
+    <select onchange="calculate()">
+      <option value="0">Select CPU</option>
+      <option value="200">Ryzen 5 7600X ($200)</option>
+      <option value="350">Ryzen 7 7800X3D ($350)</option>
+      <option value="450">Ryzen 9 7950X ($450)</option>
+    </select>
+
+    <label>GPU</label>
+    <select onchange="calculate()">
+      <option value="0">Select GPU</option>
+      <option value="300">RX 9060 XT ($300)</option>
+      <option value="600">RX 9070 ($600)</option>
+      <option value="750">RTX 5070 Ti ($750)</option>
+    </select>
+
+    <label>RAM</label>
+    <select onchange="calculate()">
+      <option value="0">Select RAM</option>
+      <option value="150">16GB DDR5 ($150)</option>
+      <option value="250">32GB DDR5 ($250)</option>
+    </select>
+
+    <label>Storage</label>
+    <select onchange="calculate()">
+      <option value="0">Select Storage</option>
+      <option value="80">1TB NVMe ($80)</option>
+      <option value="150">2TB NVMe ($150)</option>
+    </select>
+
+    <label>Cooling</label>
+    <select onchange="calculate()">
+      <option value="0">Select Cooling</option>
+      <option value="50">Air Cooler ($50)</option>
+      <option value="120">AIO Liquid ($120)</option>
+    </select>
+
+    <div class="total" id="total">Total: $0</div>
+
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <h3>Shop Prebuilt PCs</h3>
+  <div class="shop-grid">
+
+    <div class="product">
+      <h4>Starter Gaming PC</h4>
+      <p>Ryzen 5 • RX 7600 • 16GB RAM</p>
+      <p>$899</p>
+    </div>
+
+    <div class="product">
+      <h4>Performance PC</h4>
+      <p>Ryzen 7 • RX 9070 • 32GB RAM</p>
+      <p>$1,499</p>
+    </div>
+
+    <div class="product">
+      <h4>Extreme PC</h4>
+      <p>Ryzen 9 • RTX 5070 Ti • 32GB RAM</p>
+      <p>$1,999</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+  <h3>Support</h3>
+  <div class="support">
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="5" placeholder="Describe your issue"></textarea>
+    <button onclick="alert('Support request sent!')">Submit Ticket</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 Raiding PCs — Custom Built Gaming Systems
+</footer>
+
+<script>
+function calculate() {
+  let total = 0;
+  document.querySelectorAll(".builder select").forEach(select => {
+    total += parseInt(select.value);
+  });
+  document.getElementById("total").innerText = "Total: $" + total;
+}
+</script>
+
+</body>
+</html>
